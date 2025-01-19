@@ -1,4 +1,5 @@
 import express, { Router } from "express";
+import compression from "compression";
 
 interface Options {
   port: number;
@@ -17,6 +18,7 @@ export class Server {
     //Middlewares
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(compression());
 
     this.serverListener = this.app.listen(this.port, () => {
       console.log(`Server running on port ${this.port}`);
