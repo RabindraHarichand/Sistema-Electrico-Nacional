@@ -1,4 +1,4 @@
-import { EnergyGraph } from "./energyGraph.entity";
+import { EnergyGraph } from "./energy-graph.entity";
 
 export class EnergyLink {
   constructor(

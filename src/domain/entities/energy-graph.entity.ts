@@ -1,5 +1,5 @@
 import { EnergyNodeType } from "../../shared/types/energy-node.types";
-import { EnergyLink } from "./energyLink.entity";
+import { EnergyLink } from "./energy-link.entity";
 
 export class EnergyGraph {
   constructor(
