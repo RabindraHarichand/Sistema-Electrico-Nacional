@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String @id @default(uuid())
+  firstName    String
+  lastName     String
+  username     String @unique
+  email        String @unique
+  employeeCode String
+  role         String
+  passwordHash String
+}
+
+model EnergyNetworkGraphNode {
+  id       Int                      @id @default(autoincrement())
+  group    String
+  type     String
+  name     String
+  location String
+  sources  EnergyNetworkGraphLink[] @relation("sources")
+  targets  EnergyNetworkGraphLink[] @relation("targets")
+}
+
+model EnergyNetworkGraphLink {
+  source     Int
+  target     Int
+  value      Int
+  kwUnits    Int
+  nodeSource EnergyNetworkGraphNode @relation("sources", fields: [source], references: [id])
+  nodeTarget EnergyNetworkGraphNode @relation("targets", fields: [target], references: [id])
+
+  @@id([source, target])
+}
+
+model ActionLog {
+  id        Int      @id @default(autoincrement())
+  message   String
+  username  String
+  eventType String
+  createdAt DateTime @default(now())
+}
