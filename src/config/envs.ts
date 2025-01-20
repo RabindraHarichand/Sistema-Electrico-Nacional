@@ -4,10 +4,12 @@ import * as joi from "joi";
 
 interface EnvVars {
   PORT: number;
+  JWT_SEED: string;
 }
 const envsSchema = joi
   .object({
     PORT: joi.number().required(),
+    JWT_SEED: joi.string().required(),
   })
   .unknown(true);
 
@@ -18,4 +20,5 @@ if (error) {
 const envVars: EnvVars = value;
 export const envs = {
   port: envVars.PORT,
+  jwt_seed: envVars.JWT_SEED,
 };
