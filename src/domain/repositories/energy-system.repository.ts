@@ -1,9 +1,9 @@
 import { EnergyGraph } from "../entities";
 
-export abstract class EnergyGraphRepository {
+export abstract class EnergySystemRepository {
   //Nodes
 
-  abstract createNode(createEnergyGraphDto: any): Promise<EnergyGraph>;
+  abstract createNode(createEnergySystemDto: any): Promise<EnergyGraph>;
 
   abstract getAllNodes(paginationDto: any): Promise<EnergyGraph[]>;
 
@@ -11,7 +11,7 @@ export abstract class EnergyGraphRepository {
 
   abstract updateNodeById(
     id: number,
-    updateEnergyGraphDto: any
+    updateEnergySystemDto: any
   ): Promise<EnergyGraph>;
 
   abstract deleteNodeById(id: number): Promise<string>;

@@ -5,6 +5,7 @@ export type EventType =
   | "Add Link"
   | "Delete Link"
   | "Modify Link";
+
 export const eventType: string[] = [
   "Add Node",
   "Delete Node",
