@@ -1,6 +1,6 @@
 import { ActionLog } from "../entities";
 
-export abstract class ActionLogRepository {
+export abstract class ActionLogDatasource {
   abstract create(createActionLogDto: any): Promise<ActionLog>;
 
   abstract getAll(): Promise<ActionLog[]>;
