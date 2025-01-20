@@ -1,19 +1,22 @@
+import { CreateUserDto } from "../dtos/users/create-user.dto";
 import { User } from "../entities";
+import { UpdateUserDto } from "../dtos/users/update-user.dto";
+import { PaginationDto } from "../../shared/dtos/pagination.dto";
 
 export abstract class UserRepository {
-  abstract create(createUserDto: any): Promise<User>;
+  abstract create(createUserDto: CreateUserDto): Promise<User>;
 
   abstract getAll(): Promise<User[]>;
 
   abstract findById(id: number): Promise<User | null>;
 
-  abstract updateById(id: number, updateUserDto: any): Promise<User>;
+  abstract updateById(id: number, UpdateUserDto: any): Promise<User>;
 
   abstract deleteById(id: number): Promise<string>;
 
   abstract count(): Promise<number>;
 
-  abstract getRange(paginationDto: any): Promise<User[]>;
+  abstract getRange(paginationDto: PaginationDto): Promise<User[]>;
 
   abstract getByEmail(email: string): Promise<User | null>;
 

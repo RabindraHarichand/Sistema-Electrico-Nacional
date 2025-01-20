@@ -1,7 +1,8 @@
+import { CreateActionLogDto } from "../dtos/action-logs/create-action-log.dto";
 import { ActionLog } from "../entities";
 
 export abstract class ActionLogRepository {
-  abstract create(createActionLogDto: any): Promise<ActionLog>;
+  abstract create(createActionLogDto: CreateActionLogDto): Promise<ActionLog>;
 
   abstract getAll(): Promise<ActionLog[]>;
 
