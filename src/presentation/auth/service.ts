@@ -39,8 +39,14 @@ export class AuthService {
   }
 
   public async register(createUserDto: CreateUserDto) {
-    const existUser = await this.repository.getByEmail(createUserDto.email);
+    const existUser = await this.repository.existsByEmail(createUserDto.email);
     if (existUser) throw CustomError.badRequest("Email already exists");
+
+    const existUsername = await this.repository.existsByUsername(
+      createUserDto.username
+    );
+
+    if (existUsername) throw CustomError.badRequest("Username already exists");
 
     try {
       createUserDto.passwordHash = bcryptAdapter.hash(
@@ -59,6 +65,7 @@ export class AuthService {
 
       const { passwordHash, ...userProps } =
         User.fromObject(userWithEmployeeCode);
+
       const token = await JwtAdapter.generateToken({
         id: user.id,
       });

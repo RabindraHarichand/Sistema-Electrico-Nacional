@@ -11,45 +11,48 @@ export class CreateUserDto {
     public readonly username: string
   ) {}
 
-  static create(props: { [key: string]: any }): [string?, CreateUserDto?] {
+  static create(props: { [key: string]: any }): [string[]?, CreateUserDto?] {
+    let error = [];
     const {
       firstName,
       lastName,
       email,
       password,
-      role = "User",
+      role = "Operador",
       username,
     } = props;
 
-    if (!firstName) return ["Missing firstName"];
-    if (firstName.length > 50) return ["firstName too long"];
+    if (!firstName) error.push("Missing firstName");
+    if (firstName.length > 50) error.push("firstName too long");
 
-    if (!lastName) return ["Missing lastName"];
-    if (lastName.length > 50) return ["lastName too long"];
+    if (!lastName) error.push("Missing lastName");
+    if (lastName.length > 50) error.push("lastName too long");
 
-    if (!password) return ["Missing password"];
-    if (password.length < 8) return ["Password too short"];
+    if (!password) error.push("Missing password");
+    if (password.length < 8) error.push("Password too short");
 
-    if (!email) return ["Missing email"];
-    if (!regularExps.email.test(email)) return ["Email is not valid"];
+    if (!email) error.push("Missing email");
+    if (!regularExps.email.test(email)) error.push("Email is not valid");
 
-    if (!role) return ["Missing role"];
+    if (!role) error.push("Missing role");
     if (!userRole.includes(role))
-      return [`Invalid role. Valid roles are ${userRole}`];
+      error.push(`Invalid role. Valid roles are ${userRole}`);
 
-    if (!username) return ["Missing username"];
-    if (username.length < 12)
-      return ["Username must be shorter than 12 characters"];
+    if (!username) error.push("Missing username");
+    if (username.length > 12)
+      error.push("Username must be shorter than 12 characters");
     if (username.length < 8)
-      return ["Username must be longer than 8 characters"];
+      error.push("Username must be longer than 8 characters");
     if (!regularExps.atLeastOneDigit.test(username))
-      return ["Username must have at least 1 digit"];
+      error.push("Username must have at least 1 digit");
     if (!regularExps.atLeastOneSpecialChar.test(username))
-      return ["Username must have at least 1 special character"];
+      error.push("Username must have at least 1 special character");
     if (!regularExps.atLeastOneLowerCase.test(username))
-      return ["Username must have at least 1 lowercase character"];
+      error.push("Username must have at least 1 lowercase character");
     if (!regularExps.atLeastOneUpperCase.test(username))
-      return ["Username must have at least 1 uppercase character"];
+      error.push("Username must have at least 1 uppercase character");
+
+    if (error.length >= 1) return [error];
 
     return [
       undefined,

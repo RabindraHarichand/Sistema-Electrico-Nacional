@@ -10,9 +10,9 @@ export class User {
     public lastName: string,
     public username: string,
     public email: string,
-    public employeeCode: string,
     public role: UserRole,
-    public passwordHash: string
+    public passwordHash: string,
+    public employeeCode?: string
   ) {}
 
   public static fromObject(object: { [key: string]: any }): User {
@@ -34,6 +34,7 @@ export class User {
     if (!lastName) throw CustomError.badRequest("Missing last name");
 
     if (!email) throw CustomError.badRequest("Missing email");
+
     if (!regularExps.email.test(email))
       throw CustomError.badRequest("Email is not valid");
 
@@ -68,17 +69,15 @@ export class User {
         "User name must have at least 1 uppercase character"
       );
 
-    if (!employeeCode) throw CustomError.badRequest("Missing employeeCode");
-
     const user = new User(
       id,
       firstName,
       lastName,
-      email,
-      passwordHash,
-      employeeCode,
       username,
-      role as UserRole
+      email,
+      role as UserRole,
+      passwordHash,
+      employeeCode
     );
 
     return user;
