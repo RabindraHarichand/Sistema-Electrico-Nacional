@@ -5,7 +5,6 @@ import { UserDatasource } from "../../domain/datasources/user.datasource";
 import { CreateUserDto } from "../../domain/dtos/users/create-user.dto";
 import { UpdateUserDto } from "../../domain/dtos/users/update-user.dto";
 import { User } from "../../domain/entities";
-import { CustomError } from "../../domain/errors/custom.error";
 import { PaginationDto } from "../../shared/dtos/pagination.dto";
 
 export class UserDatasourceImpl implements UserDatasource {
@@ -41,6 +40,19 @@ export class UserDatasourceImpl implements UserDatasource {
         id,
       },
       data: updateUserDto,
+    });
+
+    return User.fromObject(user);
+  }
+
+  async updateEmployeeCode(id: UUID, employeeCode: string): Promise<User> {
+    const user = await prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        employeeCode,
+      },
     });
 
     return User.fromObject(user);

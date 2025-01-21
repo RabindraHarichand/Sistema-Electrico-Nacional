@@ -13,6 +13,8 @@ export abstract class UserDatasource {
 
   abstract updateById(id: UUID, updateUserDto: UpdateUserDto): Promise<User>;
 
+  abstract updateEmployeeCode(id: UUID, employeeCode: string): Promise<User>;
+
   abstract deleteById(id: UUID): Promise<string>;
 
   abstract count(): Promise<number>;

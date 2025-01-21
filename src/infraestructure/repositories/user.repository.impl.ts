@@ -26,6 +26,11 @@ export class UserRepositoryImpl implements UserRepository {
   updateById(id: UUID, updateUserDto: UpdateUserDto): Promise<User> {
     return this.datasource.updateById(id, updateUserDto);
   }
+
+  updateEmployeeCode(id: UUID, employeeCode: string): Promise<User> {
+    return this.datasource.updateEmployeeCode(id, employeeCode);
+  }
+
   deleteById(id: UUID): Promise<string> {
     return this.datasource.deleteById(id);
   }

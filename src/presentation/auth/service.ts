@@ -1,4 +1,5 @@
 import { bcryptAdapter } from "../../config/plugins/bcrypt.adapter";
+import { hexGenerator } from "../../config/plugins/hex.adapter";
 import { JwtAdapter } from "../../config/plugins/jwt.adapter";
 import { LoginUserDto } from "../../domain/dtos/auth/login-user.dto";
 import { CreateUserDto } from "../../domain/dtos/users/create-user.dto";
@@ -48,7 +49,16 @@ export class AuthService {
 
       const user = await this.repository.create(createUserDto);
 
-      const { passwordHash, ...userProps } = User.fromObject(user);
+      //Add employee code to created user
+      const employeeCode = await this.generateEmployeeCode(user);
+
+      const userWithEmployeeCode = await this.repository.updateEmployeeCode(
+        user.id,
+        employeeCode
+      );
+
+      const { passwordHash, ...userProps } =
+        User.fromObject(userWithEmployeeCode);
       const token = await JwtAdapter.generateToken({
         id: user.id,
       });
@@ -60,5 +70,9 @@ export class AuthService {
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
+  }
+
+  public async generateEmployeeCode(user: User): Promise<string> {
+    return `${user.role}-${user.id}-${hexGenerator()}`;
   }
 }
