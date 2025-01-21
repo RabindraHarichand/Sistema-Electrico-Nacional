@@ -8,8 +8,7 @@ export class CreateUserDto {
     public readonly email: string,
     public passwordHash: string,
     public readonly role: UserRole,
-    public readonly username: string,
-    public readonly employeeCode: string
+    public readonly username: string
   ) {}
 
   static create(props: { [key: string]: any }): [string?, CreateUserDto?] {
@@ -20,7 +19,6 @@ export class CreateUserDto {
       password,
       role = "User",
       username,
-      employeeCode,
     } = props;
 
     if (!firstName) return ["Missing firstName"];
@@ -40,21 +38,22 @@ export class CreateUserDto {
       return [`Invalid role. Valid roles are ${userRole}`];
 
     if (!username) return ["Missing username"];
-    if (username.length < 12) ["Username too short"];
-
-    if (!employeeCode) return ["Missing employee code"];
+    if (username.length < 12)
+      return ["Username must be shorter than 12 characters"];
+    if (username.length < 8)
+      return ["Username must be longer than 8 characters"];
+    if (!regularExps.atLeastOneDigit.test(username))
+      return ["Username must have at least 1 digit"];
+    if (!regularExps.atLeastOneSpecialChar.test(username))
+      return ["Username must have at least 1 special character"];
+    if (!regularExps.atLeastOneLowerCase.test(username))
+      return ["Username must have at least 1 lowercase character"];
+    if (!regularExps.atLeastOneUpperCase.test(username))
+      return ["Username must have at least 1 uppercase character"];
 
     return [
       undefined,
-      new CreateUserDto(
-        firstName,
-        lastName,
-        email,
-        password,
-        role,
-        username,
-        employeeCode
-      ),
+      new CreateUserDto(firstName, lastName, email, password, role, username),
     ];
   }
 }

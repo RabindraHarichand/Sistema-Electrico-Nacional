@@ -20,13 +20,13 @@ export abstract class UserDatasource {
 
   abstract getByEmail(email: string): Promise<User | null>;
 
-  abstract getByUsername(email: string): Promise<User | null>;
+  abstract getByUsername(username: string): Promise<User | null>;
 
   abstract existsById(id: number): Promise<boolean>;
 
   abstract existsByEmail(email: string): Promise<boolean>;
 
-  abstract existsByUsername(email: string): Promise<boolean>;
+  abstract existsByUsername(username: string): Promise<boolean>;
 
   abstract existsByEmailExcludingId(
     id: number,
