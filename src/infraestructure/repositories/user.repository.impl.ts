@@ -1,3 +1,4 @@
+import { UUID } from "crypto";
 import { UserDatasource } from "../../domain/datasources/user.datasource";
 import { CreateUserDto } from "../../domain/dtos/users/create-user.dto";
 import { UpdateUserDto } from "../../domain/dtos/users/update-user.dto";
@@ -19,13 +20,13 @@ export class UserRepositoryImpl implements UserRepository {
   getAll(): Promise<User[]> {
     return this.datasource.getAll();
   }
-  findById(id: number): Promise<User | null> {
+  findById(id: UUID): Promise<User | null> {
     return this.datasource.findById(id);
   }
-  updateById(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+  updateById(id: UUID, updateUserDto: UpdateUserDto): Promise<User> {
     return this.datasource.updateById(id, updateUserDto);
   }
-  deleteById(id: number): Promise<string> {
+  deleteById(id: UUID): Promise<string> {
     return this.datasource.deleteById(id);
   }
 
@@ -41,7 +42,7 @@ export class UserRepositoryImpl implements UserRepository {
     return this.datasource.getByEmail(email);
   }
 
-  existsById(id: number): Promise<boolean> {
+  existsById(id: UUID): Promise<boolean> {
     return this.datasource.existsById(id);
   }
 
@@ -49,7 +50,7 @@ export class UserRepositoryImpl implements UserRepository {
     return this.datasource.existsByEmail(email);
   }
 
-  existsByEmailExcludingId(id: number, email: string): Promise<boolean> {
+  existsByEmailExcludingId(id: UUID, email: string): Promise<boolean> {
     return this.datasource.existsByEmailExcludingId(id, email);
   }
 }
