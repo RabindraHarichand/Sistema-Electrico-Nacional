@@ -1,14 +1,17 @@
 import { Router } from "express";
+import { UsersController } from "./controller";
 
 export class UserRoutes {
   static get routes(): Router {
     const router = Router();
 
-    router.get("/", () => {});
-    router.get("/:id", () => {});
-    router.post("/", () => {});
-    router.put("/:id", () => {});
-    router.delete("/:id", () => {});
+    const userController = new UsersController();
+
+    router.get("/", userController.getAllUsers);
+    router.get("/:id", userController.getUserById);
+    router.post("/", userController.createUser);
+    router.put("/:id", userController.updateUser);
+    router.delete("/:id", userController.deleteUser);
 
     return router;
   }
