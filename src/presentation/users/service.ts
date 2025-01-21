@@ -1,4 +1,3 @@
-import { UUID } from "crypto";
 import { CreateUserDto } from "../../domain/dtos/users/create-user.dto";
 import { UpdateUserDto } from "../../domain/dtos/users/update-user.dto";
 import { CustomError } from "../../domain/errors/custom.error";
@@ -34,7 +33,7 @@ export class UserService {
     }
   }
 
-  public async getUserById(id: UUID) {
+  public async getUserById(id: string) {
     const user = await this.repository.findById(id);
 
     if (!user) {
@@ -76,7 +75,7 @@ export class UserService {
     }
   }
 
-  public async updateUser(id: UUID, updateUserDto: UpdateUserDto) {
+  public async updateUser(id: string, updateUserDto: UpdateUserDto) {
     const exists = await this.repository.existsById(id);
     if (!exists) {
       throw CustomError.notFound("User not found");
@@ -99,7 +98,7 @@ export class UserService {
     }
   }
 
-  public async deleteUser(id: UUID) {
+  public async deleteUser(id: string) {
     const exists = await this.repository.existsById(id);
     if (!exists) {
       throw CustomError.notFound(`User with id:${id} not found`);

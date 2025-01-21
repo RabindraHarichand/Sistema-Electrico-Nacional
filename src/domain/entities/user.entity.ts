@@ -5,7 +5,7 @@ import { regularExps } from "../../shared/regular-expressions/regular-exp";
 
 export class User {
   constructor(
-    public id: UUID,
+    public id: string,
     public firstName: string,
     public lastName: string,
     public username: string,

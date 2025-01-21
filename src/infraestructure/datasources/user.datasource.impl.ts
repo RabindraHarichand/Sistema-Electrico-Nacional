@@ -1,4 +1,3 @@
-import { UUID } from "crypto";
 import { prisma } from "../../data/postgres";
 import { UserDatasource } from "../../domain/datasources/user.datasource";
 
@@ -22,7 +21,7 @@ export class UserDatasourceImpl implements UserDatasource {
     return users.map((user) => User.fromObject(user));
   }
 
-  async findById(id: UUID): Promise<User | null> {
+  async findById(id: string): Promise<User | null> {
     const user = await prisma.user.findUnique({
       where: {
         id,
@@ -34,7 +33,7 @@ export class UserDatasourceImpl implements UserDatasource {
     return User.fromObject(user);
   }
 
-  async updateById(id: UUID, updateUserDto: UpdateUserDto): Promise<User> {
+  async updateById(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     const user = await prisma.user.update({
       where: {
         id,
@@ -45,7 +44,7 @@ export class UserDatasourceImpl implements UserDatasource {
     return User.fromObject(user);
   }
 
-  async updateEmployeeCode(id: UUID, employeeCode: string): Promise<User> {
+  async updateEmployeeCode(id: string, employeeCode: string): Promise<User> {
     const user = await prisma.user.update({
       where: {
         id,
@@ -58,7 +57,7 @@ export class UserDatasourceImpl implements UserDatasource {
     return User.fromObject(user);
   }
 
-  async deleteById(id: UUID): Promise<string> {
+  async deleteById(id: string): Promise<string> {
     const user = await prisma.user.delete({
       where: {
         id,
@@ -108,7 +107,7 @@ export class UserDatasourceImpl implements UserDatasource {
     return User.fromObject(user);
   }
 
-  async existsById(id: UUID): Promise<boolean> {
+  async existsById(id: string): Promise<boolean> {
     return Boolean(
       await prisma.user.findUnique({
         where: {
@@ -138,7 +137,7 @@ export class UserDatasourceImpl implements UserDatasource {
     );
   }
 
-  async existsByEmailExcludingId(id: UUID, email: string): Promise<boolean> {
+  async existsByEmailExcludingId(id: string, email: string): Promise<boolean> {
     return Boolean(
       await prisma.user.findFirst({
         where: {
