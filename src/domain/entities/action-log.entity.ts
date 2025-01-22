@@ -7,7 +7,7 @@ export class ActionLog {
     public readonly message: string,
     public readonly username: string,
     public readonly eventType: EventType,
-    public readonly createdAt: string
+    public readonly createdAt?: string
   ) {}
 
   public static fromObject(object: { [key: string]: any }): ActionLog {
@@ -22,8 +22,6 @@ export class ActionLog {
       throw CustomError.badRequest(
         `Invalid event type. Valid event types are ${eventType}`
       );
-
-    if (!createdAt) throw CustomError.badRequest("Missing createdAt");
 
     return new ActionLog(id, message, username, eventType, createdAt);
   }
