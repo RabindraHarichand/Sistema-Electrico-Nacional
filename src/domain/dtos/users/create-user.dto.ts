@@ -23,13 +23,13 @@ export class CreateUserDto {
     } = props;
 
     if (!firstName) error.push("Missing firstName");
-    if (firstName.length > 50) error.push("firstName too long");
+    if (firstName?.length > 50) error.push("firstName too long");
 
     if (!lastName) error.push("Missing lastName");
-    if (lastName.length > 50) error.push("lastName too long");
+    if (lastName?.length > 50) error.push("lastName too long");
 
     if (!password) error.push("Missing password");
-    if (password.length < 8) error.push("Password too short");
+    if (password?.length < 8) error.push("Password too short");
 
     if (!email) error.push("Missing email");
     if (!regularExps.email.test(email)) error.push("Email is not valid");
@@ -39,9 +39,9 @@ export class CreateUserDto {
       error.push(`Invalid role. Valid roles are ${userRole}`);
 
     if (!username) error.push("Missing username");
-    if (username.length > 12)
+    if (username?.length > 12)
       error.push("Username must be shorter than 12 characters");
-    if (username.length < 8)
+    if (username?.length < 8)
       error.push("Username must be longer than 8 characters");
     if (!regularExps.atLeastOneDigit.test(username))
       error.push("Username must have at least 1 digit");
