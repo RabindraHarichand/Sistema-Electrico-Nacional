@@ -13,7 +13,7 @@ export class ActionLogController {
     return res.status(500).json({ error: "Internal server error" });
   };
 
-  public getAllUsers = async (req: Request, res: Response): Promise<any> => {
+  public getAllLogs = async (req: Request, res: Response): Promise<any> => {
     const { page = 1, limit = 10 } = req.query;
     const [error, paginationDto] = PaginationDto.create(+page, +limit);
     if (error) return res.status(400).json({ error });

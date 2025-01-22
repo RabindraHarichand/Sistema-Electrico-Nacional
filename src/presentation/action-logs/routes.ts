@@ -6,7 +6,7 @@ export class ActionLogRoutes {
     const router = Router();
 
     const actionLogController = new ActionLogController();
-    router.get("/", actionLogController.getAllUsers);
+    router.get("/", actionLogController.getAllLogs);
 
     return router;
   }
