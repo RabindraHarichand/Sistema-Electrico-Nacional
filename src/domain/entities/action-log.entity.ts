@@ -23,6 +23,12 @@ export class ActionLog {
         `Invalid event type. Valid event types are ${eventType}`
       );
 
-    return new ActionLog(id, message, username, eventType, createdAt);
+    return new ActionLog(
+      id,
+      message,
+      username,
+      eventType as EventType,
+      createdAt
+    );
   }
 }

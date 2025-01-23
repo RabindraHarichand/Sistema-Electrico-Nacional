@@ -7,4 +7,13 @@ export class EnergyLink {
     public readonly value: number,
     public readonly kwUnits: number
   ) {}
+
+  static fromObject(props: { [key: string]: any }): EnergyLink {
+    return new EnergyLink(
+      props.source,
+      props.target,
+      props.value,
+      props.kwUnits
+    );
+  }
 }
