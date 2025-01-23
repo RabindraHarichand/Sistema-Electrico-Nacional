@@ -5,7 +5,7 @@ import { UpdateEnergyNodeDto } from "../../domain/dtos/energy-system/energy-node
 import { EnergyGraph } from "../../domain/entities";
 import { PaginationDto } from "../../shared/dtos/pagination.dto";
 
-export class EnergyNodeDatasourceImp implements EnergyNodeDatasource {
+export class EnergyNodeDatasourceImpl implements EnergyNodeDatasource {
   async createNode(
     createEnergyNodeDto: CreateEnergyNodeDto
   ): Promise<EnergyGraph> {
