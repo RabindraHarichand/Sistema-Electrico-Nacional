@@ -10,6 +10,11 @@ export abstract class EnergyLinkDatasource {
 
   abstract getAllLinks(): Promise<EnergyLink[]>;
 
+  abstract findLinkById(
+    sourceId: number,
+    targetId: number
+  ): Promise<EnergyLink | null>;
+
   abstract updateLinkById(
     sourceId: number,
     targetId: number,

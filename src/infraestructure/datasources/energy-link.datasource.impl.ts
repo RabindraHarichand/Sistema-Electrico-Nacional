@@ -22,6 +22,24 @@ export class EnergyLinkDatasourceImpl implements EnergyLinkDatasource {
     return links.map((link) => EnergyLink.fromObject(link));
   }
 
+  async findLinkById(
+    sourceId: number,
+    targetId: number
+  ): Promise<EnergyLink | null> {
+    const link = await prisma.energyNetworkGraphLink.findUnique({
+      where: {
+        source_target: {
+          source: sourceId,
+          target: targetId,
+        },
+      },
+    });
+
+    if (!link) return null;
+
+    return EnergyLink.fromObject(link);
+  }
+
   async updateLinkById(
     sourceId: number,
     targetId: number,

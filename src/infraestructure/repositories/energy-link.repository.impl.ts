@@ -14,6 +14,9 @@ export class EnergyLinkRepositoryImpl implements EnergyLinkRepository {
   getAllLinks(): Promise<EnergyLink[]> {
     return this.energyLinkDatasource.getAllLinks();
   }
+  findLinkById(sourceId: number, targetId: number): Promise<EnergyLink | null> {
+    return this.energyLinkDatasource.findLinkById(sourceId, targetId);
+  }
   updateLinkById(
     sourceId: number,
     targetId: number,
