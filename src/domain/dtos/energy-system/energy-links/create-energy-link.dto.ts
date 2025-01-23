@@ -1,10 +1,10 @@
-import {
-  energyNodeType,
-  EnergyNodeType,
-} from "../../../../shared/types/energy-node.types";
-
 export class CreateEnergyLinkDto {
-  constructor(source: number, target: number, value: number, kwUnits: number) {}
+  constructor(
+    public readonly source: number,
+    public readonly target: number,
+    public readonly value: number,
+    public readonly kwUnits: number
+  ) {}
 
   static create(props: {
     [key: string]: any;

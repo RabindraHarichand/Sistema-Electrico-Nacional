@@ -42,7 +42,7 @@ model EnergyNetworkGraphLink {
   nodeSource EnergyNetworkGraphNode @relation("sources", fields: [source], references: [id])
   nodeTarget EnergyNetworkGraphNode @relation("targets", fields: [target], references: [id])
 
-  @@id([source, target])
+  @@id(name: "linkId", [source, target])
 }
 
 model ActionLog {

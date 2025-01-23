@@ -5,7 +5,7 @@ CREATE TABLE "User" (
     "lastName" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "employeeCode" TEXT NOT NULL,
+    "employeeCode" TEXT,
     "role" TEXT NOT NULL,
     "passwordHash" TEXT NOT NULL,
 

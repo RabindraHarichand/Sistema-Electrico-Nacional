@@ -1,26 +1,26 @@
 import { PaginationDto } from "../../shared/dtos/pagination.dto";
 import { CreateEnergyLinkDto } from "../dtos/energy-system/energy-links/create-energy-link.dto";
 import { UpdateEnergyLinkDto } from "../dtos/energy-system/energy-links/update-energy-link.dto";
-import { EnergyGraph } from "../entities";
+import { EnergyLink } from "../entities";
 
 export abstract class EnergyLinkRepository {
   abstract createLink(
     createEnergyLinkDto: CreateEnergyLinkDto
-  ): Promise<EnergyGraph>;
+  ): Promise<EnergyLink>;
 
-  abstract getAllLinks(): Promise<EnergyGraph[]>;
+  abstract getAllLinks(): Promise<EnergyLink[]>;
 
   abstract updateLinkById(
     sourceId: number,
     targetId: number,
     updateEnergyLinkDto: UpdateEnergyLinkDto
-  ): Promise<EnergyGraph>;
+  ): Promise<EnergyLink>;
 
   abstract deleteLinkById(sourceId: number, targetId: number): Promise<string>;
 
   abstract count(): Promise<number>;
 
-  abstract getRange(paginationDto: PaginationDto): Promise<EnergyGraph[]>;
+  abstract getRange(paginationDto: PaginationDto): Promise<EnergyLink[]>;
 
   abstract existsById(sourceId: number, targetId: number): Promise<boolean>;
 }
