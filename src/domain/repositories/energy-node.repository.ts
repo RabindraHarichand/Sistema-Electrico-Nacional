@@ -10,7 +10,7 @@ export abstract class EnergyNodeRepository {
     createEnergyNodeDto: CreateEnergyNodeDto
   ): Promise<EnergyGraph>;
 
-  abstract getAllNodes(paginationDto: any): Promise<EnergyGraph[]>;
+  abstract getAllNodes(): Promise<EnergyGraph[]>;
 
   abstract findNodeById(id: number): Promise<EnergyGraph | null>;
 

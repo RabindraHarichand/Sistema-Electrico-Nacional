@@ -3,7 +3,7 @@ import { CreateEnergyLinkDto } from "../dtos/energy-system/energy-links/create-e
 import { UpdateEnergyLinkDto } from "../dtos/energy-system/energy-links/update-energy-link.dto";
 import { EnergyGraph } from "../entities";
 
-export abstract class EnergyLinkRepository {
+export abstract class EnergyLinkDatasource {
   abstract createLink(
     createEnergyLinkDto: CreateEnergyLinkDto
   ): Promise<EnergyGraph>;

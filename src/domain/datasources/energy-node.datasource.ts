@@ -1,22 +1,20 @@
 import { PaginationDto } from "../../shared/dtos/pagination.dto";
-import { CreateEnergySystemDto } from "../dtos/energy-system/energy-nodes/create-energy-node.dto";
-import { UpdateEnergySystemDto } from "../dtos/energy-system/energy-nodes/update-energy-node.dto";
+import { CreateEnergyNodeDto } from "../dtos/energy-system/energy-nodes/create-energy-node.dto";
+import { UpdateEnergyNodeDto } from "../dtos/energy-system/energy-nodes/update-energy-node.dto";
 import { EnergyGraph } from "../entities";
 
-export abstract class EnergySystemDatasource {
-  //Nodes
-
+export abstract class EnergyNodeDatasource {
   abstract createNode(
-    createEnergySystemDto: CreateEnergySystemDto
+    createEnergyNodeDto: CreateEnergyNodeDto
   ): Promise<EnergyGraph>;
 
-  abstract getAllNodes(paginationDto: any): Promise<EnergyGraph[]>;
+  abstract getAllNodes(): Promise<EnergyGraph[]>;
 
   abstract findNodeById(id: number): Promise<EnergyGraph | null>;
 
   abstract updateNodeById(
     id: number,
-    updateEnergySystemDto: UpdateEnergySystemDto
+    updateEnergyNodeDto: UpdateEnergyNodeDto
   ): Promise<EnergyGraph>;
 
   abstract deleteNodeById(id: number): Promise<string>;

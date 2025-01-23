@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-export class EnergyNodesRoutes {
+export class EnergyLinksRoutes {
   static get routes(): Router {
     const router = Router();
 

@@ -4,7 +4,6 @@ import { PaginationDto } from "../../shared/dtos/pagination.dto";
 import { CreateUserDto } from "../../domain/dtos/users/create-user.dto";
 import { UpdateUserDto } from "../../domain/dtos/users/update-user.dto";
 import { UserService } from "./service";
-import { UUID } from "crypto";
 
 export class UsersController {
   constructor(private readonly usersService: UserService) {}
