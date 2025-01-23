@@ -43,7 +43,7 @@ export class EnergyLinkService {
     }
   }
 
-  public async updateNode(
+  public async updateLink(
     sourceId: number,
     targetId: number,
     updateEnergyLinkDto: UpdateEnergyLinkDto

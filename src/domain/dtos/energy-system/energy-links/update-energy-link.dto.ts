@@ -1,7 +1,7 @@
 export class UpdateEnergyLinkDto {
   constructor(
-    public readonly source?: number,
-    public readonly target?: number,
+    public readonly source: number,
+    public readonly target: number,
     public readonly value?: number,
     public readonly kwUnits?: number
   ) {}
@@ -12,21 +12,22 @@ export class UpdateEnergyLinkDto {
     const { source, target, value, kwUnits } = props;
 
     //Source
-    if (source) {
-      if (isNaN(source)) return ["source must be a valid number"];
-      if (typeof source !== "number") return ["source must be a valid number"];
-      if (!Number.isInteger(source)) return ["source must be a valid number"];
-      if (source < 0) return ["source must be a positive number"];
-    }
+    if (!source) return ["Missing source"];
+    if (isNaN(source)) return ["source must be a valid number"];
+    if (typeof source !== "number") return ["source must be a valid number"];
+    if (!Number.isInteger(source)) return ["source must be a valid number"];
+    if (source < 0) return ["source must be a positive number"];
+
     //
 
     //Target
-    if (target) {
-      if (isNaN(target)) return ["target must be a valid number"];
-      if (typeof target !== "number") return ["target must be a valid number"];
-      if (!Number.isInteger(target)) return ["target must be a valid number"];
-      if (target < 0) return ["target must be a positive number"];
-    }
+    if (!target) return ["Missing target"];
+
+    if (isNaN(target)) return ["target must be a valid number"];
+    if (typeof target !== "number") return ["target must be a valid number"];
+    if (!Number.isInteger(target)) return ["target must be a valid number"];
+    if (target < 0) return ["target must be a positive number"];
+
     //
 
     //value
