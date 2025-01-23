@@ -4,11 +4,11 @@ export class EnergySystemRoutes {
   static get routes(): Router {
     const router = Router();
 
-    router.get("/", () => {}); //Obtener todos los nodos y links
+    router.get("/", () => {}); //Obtener todos los nodos
     // router.get("/:id", () => {}); Maybe
-    router.post("/", () => {}); // Crear nodo con o sin links
-    router.put("/:id", () => {}); //Actualizar nodo / links
-    router.delete("/:id", () => {}); //Borrar nodo y sus links
+    router.post("/", () => {}); // Crear nodo
+    router.put("/:id", () => {}); //Actualizar nodo
+    router.delete("/:id", () => {}); //Borrar nodo
 
     return router;
   }

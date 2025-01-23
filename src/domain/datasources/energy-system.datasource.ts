@@ -1,6 +1,6 @@
 import { PaginationDto } from "../../shared/dtos/pagination.dto";
-import { CreateEnergySystemDto } from "../dtos/energy-system/create-energy-system.dto";
-import { UpdateEnergySystemDto } from "../dtos/energy-system/update-energy-system.dto";
+import { CreateEnergySystemDto } from "../dtos/energy-system/energy-nodes/create-energy-node.dto";
+import { UpdateEnergySystemDto } from "../dtos/energy-system/energy-nodes/update-energy-node.dto";
 import { EnergyGraph } from "../entities";
 
 export abstract class EnergySystemDatasource {
