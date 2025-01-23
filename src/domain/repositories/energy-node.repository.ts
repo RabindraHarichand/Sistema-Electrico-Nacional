@@ -25,11 +25,5 @@ export abstract class EnergyNodeRepository {
 
   abstract getRange(paginationDto: PaginationDto): Promise<EnergyGraph[]>;
 
-  abstract getByName(name: string): Promise<EnergyGraph | null>;
-
   abstract existsById(id: number): Promise<boolean>;
-
-  abstract existsByName(name: string): Promise<boolean>;
-
-  abstract existsByNameExcludingId(id: number, name: string): Promise<boolean>;
 }

@@ -32,16 +32,8 @@ export class EnergyNodeRepositoryImpl implements EnergyNodeRepository {
   getRange(paginationDto: PaginationDto): Promise<EnergyGraph[]> {
     return this.energyNodeDatasource.getRange(paginationDto);
   }
-  getByName(name: string): Promise<EnergyGraph | null> {
-    return this.energyNodeDatasource.getByName(name);
-  }
+
   existsById(id: number): Promise<boolean> {
     return this.energyNodeDatasource.existsById(id);
-  }
-  existsByName(name: string): Promise<boolean> {
-    return this.energyNodeDatasource.existsByName(name);
-  }
-  existsByNameExcludingId(id: number, name: string): Promise<boolean> {
-    return this.energyNodeDatasource.existsByNameExcludingId(id, name);
   }
 }
