@@ -39,8 +39,8 @@ model EnergyNetworkGraphLink {
   target     Int
   value      Int
   kwUnits    Int
-  nodeSource EnergyNetworkGraphNode @relation("sources", fields: [source], references: [id])
-  nodeTarget EnergyNetworkGraphNode @relation("targets", fields: [target], references: [id])
+  nodeSource EnergyNetworkGraphNode @relation("sources", fields: [source], references: [id], onDelete: Cascade)
+  nodeTarget EnergyNetworkGraphNode @relation("targets", fields: [target], references: [id], onDelete: Cascade)
 
   @@id(name: "linkId", [source, target])
 }
