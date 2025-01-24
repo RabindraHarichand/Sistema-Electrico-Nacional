@@ -48,14 +48,14 @@ export class EnergyNodeDatasourceImpl implements EnergyNodeDatasource {
     return EnergyGraph.fromObject(node);
   }
 
-  async deleteNodeById(id: number): Promise<string> {
+  async deleteNodeById(id: number): Promise<EnergyGraph> {
     const node = await prisma.energyNetworkGraphNode.delete({
       where: {
         id,
       },
     });
 
-    return `Energy Node with id ${node.id} deleted`;
+    return EnergyGraph.fromObject(node);
   }
 
   async count(): Promise<number> {

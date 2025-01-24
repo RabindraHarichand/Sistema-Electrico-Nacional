@@ -28,7 +28,7 @@ export class EnergyLinkDatasourceImpl implements EnergyLinkDatasource {
   ): Promise<EnergyLink | null> {
     const link = await prisma.energyNetworkGraphLink.findUnique({
       where: {
-        source_target: {
+        linkId: {
           source: sourceId,
           target: targetId,
         },
@@ -47,7 +47,7 @@ export class EnergyLinkDatasourceImpl implements EnergyLinkDatasource {
   ): Promise<EnergyLink> {
     const link = await prisma.energyNetworkGraphLink.update({
       where: {
-        source_target: {
+        linkId: {
           source: sourceId,
           target: targetId,
         },
@@ -61,7 +61,7 @@ export class EnergyLinkDatasourceImpl implements EnergyLinkDatasource {
   async deleteLinkById(sourceId: number, targetId: number): Promise<string> {
     const link = await prisma.energyNetworkGraphLink.delete({
       where: {
-        source_target: {
+        linkId: {
           source: sourceId,
           target: targetId,
         },
@@ -91,7 +91,7 @@ export class EnergyLinkDatasourceImpl implements EnergyLinkDatasource {
     return Boolean(
       await prisma.energyNetworkGraphLink.findUnique({
         where: {
-          source_target: {
+          linkId: {
             source: sourceId,
             target: targetId,
           },

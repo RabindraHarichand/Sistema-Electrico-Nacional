@@ -1,11 +1,12 @@
 import { prisma } from "../../data/postgres";
 import { ActionLogDatasource } from "../../domain/datasources/action-log.datasource";
+import { CreateActionLogDto } from "../../domain/dtos/action-logs/create-action-log.dto";
 import { ActionLog } from "../../domain/entities";
 import { PaginationDto } from "../../shared/dtos/pagination.dto";
 import { EventType } from "../../shared/types/event.types";
 
 export class ActionLogDatasourceIml implements ActionLogDatasource {
-  async create(log: Omit<ActionLog, "id">): Promise<void> {
+  async create(log: CreateActionLogDto): Promise<void> {
     const newLog = await prisma.actionLog.create({
       data: {
         ...log,

@@ -1,9 +1,10 @@
 import { PaginationDto } from "../../shared/dtos/pagination.dto";
 import { ActionLog } from "../entities";
 import { EventType } from "../../shared/types/event.types";
+import { CreateActionLogDto } from "../dtos/action-logs/create-action-log.dto";
 
 export abstract class ActionLogRepository {
-  abstract create(actionLog: ActionLog): Promise<void>;
+  abstract create(actionLog: CreateActionLogDto): Promise<void>;
 
   abstract getLogsByType(
     paginationDto: PaginationDto,

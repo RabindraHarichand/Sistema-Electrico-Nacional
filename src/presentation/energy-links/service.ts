@@ -2,9 +2,13 @@ import { CreateEnergyLinkDto } from "../../domain/dtos/energy-system/energy-link
 import { UpdateEnergyLinkDto } from "../../domain/dtos/energy-system/energy-links/update-energy-link.dto";
 import { CustomError } from "../../domain/errors/custom.error";
 import { EnergyLinkRepository } from "../../domain/repositories/energy-link.repository";
+import { EnergyNodeRepository } from "../../domain/repositories/energy-node.repository";
 
 export class EnergyLinkService {
-  constructor(private readonly repository: EnergyLinkRepository) {}
+  constructor(
+    private readonly repository: EnergyLinkRepository,
+    private readonly energyNodeRepository: EnergyNodeRepository
+  ) {}
 
   public async getAllLinks() {
     try {
@@ -32,6 +36,35 @@ export class EnergyLinkService {
   }
 
   public async createLink(createEnergyLinkDto: CreateEnergyLinkDto) {
+    const existsSourceNode = await this.energyNodeRepository.existsById(
+      createEnergyLinkDto.source
+    );
+    if (!existsSourceNode) {
+      throw CustomError.notFound(
+        `Node with id:${createEnergyLinkDto.source} not found`
+      );
+    }
+
+    const existsTargetNode = await this.energyNodeRepository.existsById(
+      createEnergyLinkDto.target
+    );
+    if (!existsTargetNode) {
+      throw CustomError.notFound(
+        `Node with wi:${createEnergyLinkDto.target} not found`
+      );
+    }
+
+    const existsLink = await this.repository.existsById(
+      createEnergyLinkDto.source,
+      createEnergyLinkDto.target
+    );
+
+    if (existsLink) {
+      throw CustomError.notFound(
+        `Link with sourceId:${createEnergyLinkDto.source} & targetId:${createEnergyLinkDto.target} already exists`
+      );
+    }
+
     try {
       const link = await this.repository.createLink(createEnergyLinkDto);
 

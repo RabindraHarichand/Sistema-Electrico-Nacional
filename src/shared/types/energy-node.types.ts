@@ -1,9 +1,9 @@
 export type EnergyNodeType =
-  | "Centrales de Generación,"
-  | "Centrales Termoeléctricas"
-  | "Centros de Distribución";
+  | "Central de Generación,"
+  | "Central Termoeléctricas"
+  | "Centro de Distribución";
 export const energyNodeType: string[] = [
-  "Centrales de Generación,",
-  "Centrales Termoeléctricas",
-  "Centros de Distribución",
+  "Central de Generación",
+  "Central Termoeléctricas",
+  "Centro de Distribución",
 ];

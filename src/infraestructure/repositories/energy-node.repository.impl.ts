@@ -23,7 +23,8 @@ export class EnergyNodeRepositoryImpl implements EnergyNodeRepository {
   ): Promise<EnergyGraph> {
     return this.energyNodeDatasource.updateNodeById(id, updateEnergyNodeDto);
   }
-  deleteNodeById(id: number): Promise<string> {
+
+  deleteNodeById(id: number): Promise<EnergyGraph> {
     return this.energyNodeDatasource.deleteNodeById(id);
   }
   count(): Promise<number> {

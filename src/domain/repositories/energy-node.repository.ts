@@ -19,7 +19,7 @@ export abstract class EnergyNodeRepository {
     updateEnergyNodeDto: UpdateEnergyNodeDto
   ): Promise<EnergyGraph>;
 
-  abstract deleteNodeById(id: number): Promise<string>;
+  abstract deleteNodeById(id: number): Promise<EnergyGraph>;
 
   abstract count(): Promise<number>;
 
