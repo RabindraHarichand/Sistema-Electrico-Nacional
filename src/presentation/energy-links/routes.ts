@@ -5,6 +5,8 @@ import { EnergyLinkRepositoryImpl } from "../../infraestructure/repositories/ene
 import { EnergyLinkDatasourceImpl } from "../../infraestructure/datasources/energy-link.datasource.impl";
 import { EnergyNodeDatasourceImpl } from "../../infraestructure/datasources/energy-node.datasource.impl";
 import { EnergyNodeRepositoryImpl } from "../../infraestructure/repositories/energy-node.repository.impl";
+import { ActionLogDatasourceIml } from "../../infraestructure/datasources/action-log.datasource.impl";
+import { ActionLogRepositoryImpl } from "../../infraestructure/repositories/action-log.repository.impl";
 
 export class EnergyLinksRoutes {
   static get routes(): Router {
@@ -20,9 +22,15 @@ export class EnergyLinksRoutes {
       energyNodeDatasource
     );
 
+    const actionLogDatasource = new ActionLogDatasourceIml();
+    const actionLogRepository = new ActionLogRepositoryImpl(
+      actionLogDatasource
+    );
+
     const energyLinkService = new EnergyLinkService(
       energyLinkRepository,
-      energyNodeRepository
+      energyNodeRepository,
+      actionLogRepository
     );
     const energyLinkController = new EnergyLinkController(energyLinkService);
 

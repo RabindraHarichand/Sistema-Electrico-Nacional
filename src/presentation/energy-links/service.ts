@@ -3,11 +3,13 @@ import { UpdateEnergyLinkDto } from "../../domain/dtos/energy-system/energy-link
 import { CustomError } from "../../domain/errors/custom.error";
 import { EnergyLinkRepository } from "../../domain/repositories/energy-link.repository";
 import { EnergyNodeRepository } from "../../domain/repositories/energy-node.repository";
+import { ActionLogRepository } from "../../domain/repositories/action-log.repository";
 
 export class EnergyLinkService {
   constructor(
     private readonly repository: EnergyLinkRepository,
-    private readonly energyNodeRepository: EnergyNodeRepository
+    private readonly energyNodeRepository: EnergyNodeRepository,
+    private readonly actionLogRepository: ActionLogRepository
   ) {}
 
   public async getAllLinks() {
