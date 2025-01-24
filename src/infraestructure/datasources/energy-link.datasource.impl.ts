@@ -58,7 +58,10 @@ export class EnergyLinkDatasourceImpl implements EnergyLinkDatasource {
     return EnergyLink.fromObject(link);
   }
 
-  async deleteLinkById(sourceId: number, targetId: number): Promise<string> {
+  async deleteLinkById(
+    sourceId: number,
+    targetId: number
+  ): Promise<EnergyLink> {
     const link = await prisma.energyNetworkGraphLink.delete({
       where: {
         linkId: {
@@ -68,7 +71,7 @@ export class EnergyLinkDatasourceImpl implements EnergyLinkDatasource {
       },
     });
 
-    return `Energy link with source id:${sourceId} and target id:${targetId} deleted`;
+    return EnergyLink.fromObject(link);
   }
 
   async count(): Promise<number> {

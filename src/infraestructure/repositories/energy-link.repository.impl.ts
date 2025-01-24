@@ -28,7 +28,7 @@ export class EnergyLinkRepositoryImpl implements EnergyLinkRepository {
       updateEnergyLinkDto
     );
   }
-  deleteLinkById(sourceId: number, targetId: number): Promise<string> {
+  deleteLinkById(sourceId: number, targetId: number): Promise<EnergyLink> {
     return this.energyLinkDatasource.deleteLinkById(sourceId, targetId);
   }
   count(): Promise<number> {

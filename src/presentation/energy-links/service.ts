@@ -4,6 +4,7 @@ import { CustomError } from "../../domain/errors/custom.error";
 import { EnergyLinkRepository } from "../../domain/repositories/energy-link.repository";
 import { EnergyNodeRepository } from "../../domain/repositories/energy-node.repository";
 import { ActionLogRepository } from "../../domain/repositories/action-log.repository";
+import { CreateActionLogDto } from "../../domain/dtos/action-logs/create-action-log.dto";
 
 export class EnergyLinkService {
   constructor(
@@ -70,6 +71,13 @@ export class EnergyLinkService {
     try {
       const link = await this.repository.createLink(createEnergyLinkDto);
 
+      const actionLog = new CreateActionLogDto(
+        `Created energy link with sorce: ${createEnergyLinkDto.source} & target: ${createEnergyLinkDto.target}`,
+        "ayuwoki",
+        "Add Link"
+      );
+      await this.actionLogRepository.create(actionLog);
+
       return link;
     } catch (error) {
       console.log(error);
@@ -96,6 +104,14 @@ export class EnergyLinkService {
         targetId,
         updateEnergyLinkDto
       );
+
+      const actionLog = new CreateActionLogDto(
+        `Modified energy link with sorce: ${updateEnergyLinkDto.source} & target: ${updateEnergyLinkDto.target}`,
+        "ayuwoki",
+        "Modify Link"
+      );
+      await this.actionLogRepository.create(actionLog);
+
       return link;
     } catch (error) {
       throw CustomError.internalServer();
@@ -112,6 +128,14 @@ export class EnergyLinkService {
 
     try {
       const link = await this.repository.deleteLinkById(sourceId, targetId);
+
+      const actionLog = new CreateActionLogDto(
+        `Deleted energy link with sorce: ${sourceId} & target: ${targetId}`,
+        "ayuwoki",
+        "Delete Link"
+      );
+      await this.actionLogRepository.create(actionLog);
+
       return link;
     } catch (error) {
       throw CustomError.internalServer();

@@ -21,7 +21,10 @@ export abstract class EnergyLinkRepository {
     updateEnergyLinkDto: UpdateEnergyLinkDto
   ): Promise<EnergyLink>;
 
-  abstract deleteLinkById(sourceId: number, targetId: number): Promise<string>;
+  abstract deleteLinkById(
+    sourceId: number,
+    targetId: number
+  ): Promise<EnergyLink>;
 
   abstract count(): Promise<number>;
 
